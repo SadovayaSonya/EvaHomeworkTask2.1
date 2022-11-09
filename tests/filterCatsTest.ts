@@ -1,19 +1,27 @@
 import { suite, test } from '@testdeck/mocha';
 import Pages from '../src/pages/Pages';
-import CatsAllNamesPage from '../src/pages/CatsAllNamesPage';
+import CatsRatingPage from '../src/pages/CatsRatingPage';
+import { id } from "eva.io-allure";
 
-const catsAllNamesPage: CatsAllNamesPage = Pages.catsAllNamesPage;
+const catsRatingPage: CatsRatingPage = Pages.catsRatingPage;
 
 @suite('test suite')
 export class TestSuite {
+    @id(1)
     @test
-    'Фильтрация котиков по части имени на странице "Все котики"'() {
+    'Сортировка по лайкам на странице "Рейтинг имен котиков"'() {
         steps
-            .goTo(catsAllNamesPage)
-            .fillField(catsAllNamesPage.input, 'В')
-            .pressKeys(['Enter']);
-        const filteredNamesArray = catsAllNamesPage.namesCats.filter(element => element.getText().search(/$('В')/i));
+            .goTo(catsRatingPage)
+            .waitLoaded(catsRatingPage.tableRating)
+            .sortCats(catsRatingPage.ratingNamesCats);
+    }
+
+    @id(2)
+    @test
+    'Сортировка по дизлайкам на странице "Рейтинг имен котиков"'() {
         steps
-            .checkArrayLength(filteredNamesArray, '=', catsAllNamesPage.namesCats.length);
+            .goTo(catsRatingPage)
+            .waitLoaded(catsRatingPage.tableRating)
+            .sortCats(catsRatingPage.antiRatingNamesCats);
     }
 }

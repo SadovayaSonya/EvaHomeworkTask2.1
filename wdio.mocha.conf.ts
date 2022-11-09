@@ -1,10 +1,12 @@
 import {EvaService} from 'eva.io-core';
 import {AllureService} from 'eva.io-allure';
 import {BaseSteps} from 'eva.io-base_steps';
+import MySteps from "./src/steps/MySteps";
 
 exports.config = {
     beforeSession() {
         BaseSteps.register();
+        steps.addStep('sortCats', MySteps.sortCats);
     },
     // Хост для WebDriver сервера
     hostname: process.env.CI ? "" + 'hub.harlequin.v2.dev2.k8s.tcsbank.ru' : 'localhost',

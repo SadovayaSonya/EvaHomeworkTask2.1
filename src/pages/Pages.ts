@@ -1,7 +1,7 @@
-import CatsAllNamesPage from "./CatsAllNamesPage";
+import CatsRatingPage from "./CatsRatingPage";
 
-const catsAllNamesPage: CatsAllNamesPage = new CatsAllNamesPage('Все котики', '/all-names');
+const catsRatingPage: CatsRatingPage = new CatsRatingPage('Рейтинг имен котиков', '/rating');
 
 export default {
-    catsAllNamesPage: catsAllNamesPage
+    catsRatingPage: catsRatingPage
 }
